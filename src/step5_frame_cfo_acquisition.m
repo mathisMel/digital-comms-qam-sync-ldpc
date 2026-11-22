@@ -105,3 +105,19 @@ plot_ber_curves(SNR, cfoStdWindow, {'K = 1', 'K = 8', 'K = 16'}, ...
 
 fprintf('Step 5 @ Eb/N0 = 16 dB | ToA err N=[10,20,40]: %s | CFO std [ppm]: %s\n', ...
     sprintf('%.2f ', ToAErrPilot(:, end)), sprintf('%.2f ', cfoStdPilot(:, end)));
+
+%% Export Figures (450 DPI PNG + Vector PDF)
+figRoot = fullfile(fileparts(fileparts(mfilename('fullpath'))), 'docs', 'figures');
+pngDir = fullfile(figRoot, 'png');
+pdfDir = fullfile(figRoot, 'pdf');
+if ~exist(pngDir, 'dir'), mkdir(pngDir); end
+if ~exist(pdfDir, 'dir'), mkdir(pdfDir); end
+figs = findall(0, 'Type', 'figure');
+if ~isempty(figs)
+    [~, ord] = sort([figs.Number]);
+    figs = figs(ord);
+    for fi = 1:numel(figs)
+        exportgraphics(figs(fi), fullfile(pngDir, sprintf('step5_acq_fig%02d.png', fi)), 'Resolution', 450, 'BackgroundColor', 'white');
+        exportgraphics(figs(fi), fullfile(pdfDir, sprintf('step5_acq_fig%02d.pdf', fi)), 'ContentType', 'vector', 'BackgroundColor', 'white');
+    end
+end

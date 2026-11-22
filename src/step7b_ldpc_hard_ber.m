@@ -82,3 +82,19 @@ plot_ber_curves(SNR, BER, {'1 iteration', '2 iterations', '5 iterations', '10 it
 ylim([1e-4 1]);
 
 fprintf('Step 7b LDPC BER (10 iter) across SNR=-4..10 dB: %s\n', sprintf('%.3e ', BER(4,:)));
+
+%% Export Figures (450 DPI PNG + Vector PDF)
+figRoot = fullfile(fileparts(fileparts(mfilename('fullpath'))), 'docs', 'figures');
+pngDir = fullfile(figRoot, 'png');
+pdfDir = fullfile(figRoot, 'pdf');
+if ~exist(pngDir, 'dir'), mkdir(pngDir); end
+if ~exist(pdfDir, 'dir'), mkdir(pdfDir); end
+figs = findall(0, 'Type', 'figure');
+if ~isempty(figs)
+    [~, ord] = sort([figs.Number]);
+    figs = figs(ord);
+    for fi = 1:numel(figs)
+        exportgraphics(figs(fi), fullfile(pngDir, sprintf('step7b_ldpc_fig%02d.png', fi)), 'Resolution', 450, 'BackgroundColor', 'white');
+        exportgraphics(figs(fi), fullfile(pdfDir, sprintf('step7b_ldpc_fig%02d.pdf', fi)), 'ContentType', 'vector', 'BackgroundColor', 'white');
+    end
+end

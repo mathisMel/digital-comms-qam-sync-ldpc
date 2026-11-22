@@ -33,20 +33,20 @@ Verified metrics recorded on MATLAB R2026b (`rng(0)` deterministic seeds):
 | **Step 6: Full 16-QAM Receiver** | `Shift = 0.17 T`, `CFO = 0 / 2 / 10 / 50 ppm` | `toa = 930`; `est_CFO = 30.11 kHz` (`@ 50 ppm`); bit errors `0 / 0 / 0 / 5,058` |
 | **Step 7b: `(128 x 256)` Hard LDPC** | `10` iterations, `E_b/N_0 = -4..10 dB` | `0.3978 (-4 dB) -> 0.2197 (0 dB) -> 1.139e-2 (4 dB) -> 3.255e-4 (6 dB) -> 0 (8-10 dB)` |
 
-![Square-QAM BER over AWGN Channel](docs/figures/step1_qam_fig03.png)
-*Figure 1 (`step1_qam_fig03.png`): Simulated AWGN BER waterfalls for Gray-coded 4-, 16-, 64-, and 256-QAM.*
+![Square-QAM BER over AWGN Channel](docs/figures/png/step1_qam_fig03.png)
+*Figure 1 (`step1_qam_fig03.png`): Simulated AWGN BER waterfalls for Gray-coded 4-, 16-, 64-, and 256-QAM — [Vector PDF](docs/figures/pdf/step1_qam_fig03.pdf).*
 
-![4-QAM BER vs Constant Carrier Phase Shift](docs/figures/step3_imp_fig03.png)
-*Figure 2 (`step3_imp_fig03.png`): Uncompensated constant carrier phase rotation creating an irreducible `0.25` BER floor at `phi_0 = pi/4`.*
+![4-QAM BER vs Constant Carrier Phase Shift](docs/figures/png/step3_imp_fig03.png)
+*Figure 2 (`step3_imp_fig03.png`): Uncompensated constant carrier phase rotation creating an irreducible `0.25` BER floor at `phi_0 = pi/4` — [Vector PDF](docs/figures/pdf/step3_imp_fig03.pdf).*
 
-![Gardner Timing Error Convergence](docs/figures/step4_gardner_fig03.png)
-*Figure 3 (`step4_gardner_fig03.png`): Closed-loop Gardner timing error (`mean ± std`) from `0.40 T` across loop gains `K = 0.01, 0.02, 0.03`.*
+![Gardner Timing Error Convergence](docs/figures/png/step4_gardner_fig03.png)
+*Figure 3 (`step4_gardner_fig03.png`): Closed-loop Gardner timing error (`mean ± std`) from `0.40 T` across loop gains `K = 0.01, 0.02, 0.03` — [Vector PDF](docs/figures/pdf/step4_gardner_fig03.pdf).*
 
-![CFO Estimation Std vs Pilot Length](docs/figures/step5_acq_fig03.png)
-*Figure 4 (`step5_acq_fig03.png`): Differential cross-correlation CFO estimation standard deviation vs. `E_b/N_0` across pilot lengths `N = 10, 20, 40`.*
+![CFO Estimation Std vs Pilot Length](docs/figures/png/step5_acq_fig03.png)
+*Figure 4 (`step5_acq_fig03.png`): Differential cross-correlation CFO estimation standard deviation vs. `E_b/N_0` across pilot lengths `N = 10, 20, 40` — [Vector PDF](docs/figures/pdf/step5_acq_fig03.pdf).*
 
-![Rate-1/2 Hard-Decision LDPC BER](docs/figures/step7b_ldpc_fig01.png)
-*Figure 5 (`step7b_ldpc_fig01.png`): Rate-1/2 `(128 x 256)` regular LDPC hard-decision BER across `1, 2, 5, 10` Tanner-graph iterations.*
+![Rate-1/2 Hard-Decision LDPC BER](docs/figures/png/step7b_ldpc_fig01.png)
+*Figure 5 (`step7b_ldpc_fig01.png`): Rate-1/2 `(128 x 256)` regular LDPC hard-decision BER across `1, 2, 5, 10` Tanner-graph iterations — [Vector PDF](docs/figures/pdf/step7b_ldpc_fig01.pdf).*
 
 ## Repository Layout & Quickstart
 
@@ -62,7 +62,9 @@ digital-comms-qam-sync-ldpc/
 │   ├── step7a_ldpc_small_matrix_demo.m          # Systematic (5x10) parity-check self-test
 │   ├── step7b_ldpc_hard_ber.m                   # Rate-1/2 (128x256) hard-decision LDPC BER sweep
 │   └── lib/                                     # 11 shared PHY & LDPC helper functions
-├── docs/figures/                                # Exported white-background figures (22 PNGs)
+├── docs/figures/
+│   ├── png/                                     # 450 DPI PNG exports (all 22 figures)
+│   └── pdf/                                     # True vector PDF exports (all 22 figures)
 ├── .gitignore
 ├── LICENSE
 ├── THIRD_PARTY_NOTICES.md                       # Attribution for Bagawan Nugroho LDPC routines

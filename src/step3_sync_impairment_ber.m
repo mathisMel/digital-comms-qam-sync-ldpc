@@ -113,3 +113,19 @@ ylim([1e-4 1]);
 
 fprintf('Step 3 BER @ 10 dB | BERCFO(0,50ppm): %.3e, %.3e | BERPhase(0,pi/8,pi/4): %.3e, %.3e, %.3e\n', ...
     BERCFO(1, SNR==10), BERCFO(5, SNR==10), BERPhase(:, SNR==10));
+
+%% Export Figures (450 DPI PNG + Vector PDF)
+figRoot = fullfile(fileparts(fileparts(mfilename('fullpath'))), 'docs', 'figures');
+pngDir = fullfile(figRoot, 'png');
+pdfDir = fullfile(figRoot, 'pdf');
+if ~exist(pngDir, 'dir'), mkdir(pngDir); end
+if ~exist(pdfDir, 'dir'), mkdir(pdfDir); end
+figs = findall(0, 'Type', 'figure');
+if ~isempty(figs)
+    [~, ord] = sort([figs.Number]);
+    figs = figs(ord);
+    for fi = 1:numel(figs)
+        exportgraphics(figs(fi), fullfile(pngDir, sprintf('step3_imp_fig%02d.png', fi)), 'Resolution', 450, 'BackgroundColor', 'white');
+        exportgraphics(figs(fi), fullfile(pdfDir, sprintf('step3_imp_fig%02d.pdf', fi)), 'ContentType', 'vector', 'BackgroundColor', 'white');
+    end
+end
